@@ -1,5 +1,5 @@
 def salario(arr): # complexity O(n)
-    
+    # ref https://www.geeksforgeeks.org/minimum-salary-hike-for-each-employee-such-that-no-employee-feels-unfair/
     sol = [1 for _ in range(0, len(arr))]
     
     sol[1] = 1
@@ -23,9 +23,11 @@ def salario(arr): # complexity O(n)
                 sol[i] += 1
     return sol, sum(sol)
 
-
+b = [1, 3, 5, 4] # expected output 1 2 3 2
+print(salario(b))
 
 def indice(arr, i, j):
+    # ref: https://people.eecs.berkeley.edu/~vazirani/algorithms/chap2.pdf 2.17
     if i > j:
         return "None"
     
@@ -49,8 +51,7 @@ def indice(arr, i, j):
 
 
 
-b = [1, 3, 5, 4] # expected output 1 2 3 2
-print(salario(b))
 
-c = [1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 15, 15, 15]
+
+c = [0]
 print(indice(c, 0, len(c)-1))
