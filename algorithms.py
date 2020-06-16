@@ -123,4 +123,27 @@ print(ex1(e, 0, len(e)-1))
 complexity: T(n/2) + O(1) = O(logn)
 '''
     
+'''
+Trovare l'elemento di un array per cui A[i] != i.
+Ad esempio:
+[1, 2, 3, 5, 6, 7, 8] deve ritornare 4.
+'''
 
+def ff(arr,i,j):
+    if i > j:
+        return None
+    if i == j and arr[i] != (i+1):
+        return i+1
+
+    m = (i+j)//2
+    
+    if arr[m] != m+1:
+        return m+1
+    
+    if arr[m-1] == m:
+        return ff(arr, m+1, j)
+    
+    return ff(arr, i, m-1)
+
+a = [1, 2, 3, 5, 6, 7, 8]
+print(ff(a, 0, len(a)-1))
