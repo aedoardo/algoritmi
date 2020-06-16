@@ -90,7 +90,37 @@ T(n) = O(nlogn)
 '''
 d = [0,0,0,0,0,0,1,2,2,2,3,2,2,2,2,2,4,5,5,5,5,5,5,55,6666,6666,6666,6666,6666,6666,6666,6666,6666, 5, 5, 5,5,5,5,5]
 print(majority(d, 0, len(d)-1))
-    
-    
 
+
+'''
+Supponiamo che le quotazioni in borsa di un'azienda durante n giorni siano immagazzinati in un array A di interi.
+Supponiamo che le quotazioni tra il primo e l'ultimo giorno siano salite.
+Dimostrare che esiste un 1 <= i <= n tale che A[i] < A[i+1]. Descrivere un algoritmo divide et impera che preso in
+input un array A di n (n >= 2) interi tale che A[1] < A[n], restiituisce un indice i tale che A[i] < A[i+1]
+'''
+
+def ex1(arr, i, j):
+    if len(arr) < 2 or i > j:
+        return None
+    
+    if i == j:
+        return arr[i], i
+    
+    m = (i+j)//2
+    
+    if arr[m] < arr[m+1]:
+        return arr[m], m
+    
+    if arr[m] == arr[m+1]:
+        return ex1(arr, m+2, j)
+    
+    return ex1(arr, i, m-1)
+
+e = [1]
+print(ex1(e, 0, len(e)-1))
+
+'''
+complexity: T(n/2) + O(1) = O(logn)
+'''
+    
 
