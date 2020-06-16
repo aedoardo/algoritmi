@@ -147,3 +147,35 @@ def ff(arr,i,j):
 
 a = [1, 2, 3, 5, 6, 7, 8]
 print(ff(a, 0, len(a)-1))
+
+
+'''
+Dato a array di n elementi ordinato. Scrivere lo pseudocodice di un algoritmo con complessità
+O(logn) che prende A in input e ritorna il numero di indici j per quale A[j] = x. Ad esempio
+se A = [1, 1, 2, 3, 3, 3, 3, 4, 4, 5, 6] con x = 3, l'algooritmo restituirà 4.
+'''
+
+def occ1(arr, i, j, x):
+    if j >= i:
+        m = (i+j)//2
+        if m == 0 or x > arr[m-1] and arr[m] == x:
+            return m
+        elif x > arr[m]:
+            return occ1(arr, m+1, j, x)
+        else:
+            return occ1(arr, i, m-1, x)
+    return -1
+        
+def occ2(arr, i, j, x):
+    if j >= i:
+        m = (i+j)//2
+        if m == len(arr)-1 or x < arr[m+1] and a[m] == x:
+            return m
+        elif x < arr[m]:
+            return occ2(arr, i, m-1, x)
+        return occ2(arr, m+1, j, x)
+    return -1
+
+
+a = [1, 1, 2, 3, 3, 3, 3, 3, 3,  4, 4, 5, 6]
+print(occ2(a, 0, len(a)-1, 3) - occ1(a, 0, len(a)-1, 3) + 1)
